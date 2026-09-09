@@ -1,0 +1,89 @@
+# This script contains a function that when executed, creates all the fact, dimension and look up tables for the spectra_file data.
+
+from sqlalchemy import create_engine, text
+import pandas as pd
+import numpy as np 
+import requests
+
+# function that creates spectra_file tables within postgreSQL database
+def create_spec_tables(PostgreSQL_DATABASE_URL):
+
+    # HTTP GET request to NASA API/TAP
+    url = "https://exoplanetarchive.ipac.caltech.edu/TAP/sync"
+
+    params = {
+        "query": """
+            SELECT *
+            FROM spectra
+        """,
+        "format": "csv"
+    }
+
+    response = requests.get(url, params=params) # Response from NASA's API endpoint
+    response.raise_for_status() # Error Handling 
+
+    # PostgreSQL connection
+    engine = create_engine(PostgreSQL_DATABASE_URL)
+
+    # Execute SQL commands DDL
+    with engine.begin() as conn:
+        conn.execute(text('''
+        DROP TABLE IF EXISTS spectra_files;
+        DROP TABLE IF EXISTS planets;
+        DROP TABLE IF EXISTS instruments;
+        DROP TABLE IF EXISTS publications;
+        DROP TABLE IF EXISTS facilities;
+        DROP TABLE IF EXISTS spec_types;
+
+        
+        CREATE TABLE IF NOT EXISTS planets (
+        id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+        pl_name VARCHAR
+        ); 
+
+        CREATE TABLE IF NOT EXISTS instruments (
+        id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+        instrument VARCHAR
+        );
+
+        CREATE TABLE IF NOT EXISTS publications (
+        id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+        author VARCHAR,
+        bibcode VARCHAR
+        );
+
+        CREATE TABLE IF NOT EXISTS facilities (
+        id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+        facility VARCHAR
+        );
+
+        CREATE TABLE IF NOT EXISTS spec_types (
+        id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+        spec_type VARCHAR
+        );
+
+        CREATE TABLE IF NOT EXISTS spectra_files (
+        id INTEGER PRIMARY KEY,
+        planets_id INTEGER,
+        spec_types_id INTEGER,
+        publications_id INTEGER,
+        num_datapoints INTEGER,
+        instruments_id INTEGER,
+        facilities_id INTEGER,
+        minwavelength FLOAT,
+        maxwavelength FLOAT,
+        mintranmid FLOAT,
+        maxtranmid FLOAT,
+        note VARCHAR,
+        spec_path VARCHAR UNIQUE,
+
+        FOREIGN KEY (planets_id) REFERENCES planets(id),
+        FOREIGN KEY (spec_types_id) REFERENCES spec_types(id),
+        FOREIGN KEY (publications_id) REFERENCES publications(id),
+        FOREIGN KEY (instruments_id) REFERENCES instruments(id),
+        FOREIGN KEY (facilities_id) REFERENCES facilities(id)
+        );
+        '''))
+        return f'''HTTP status_code: {response.status_code}\n\n--tables created in database--''' 
+        # Status code for validation.
+        # validation message saying that the tables have been created.
