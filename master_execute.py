@@ -3,12 +3,29 @@
  
 import os
 from dotenv import load_dotenv
-from create_pg_tables import create_spec_tables
+from first_api_call_df_creation import nasa_get
+from second_create_pg_tables import create_spec_tables
+from third_load_dim_tables import load_dim_tables
+import requests
+import pandas as pd
+from io import StringIO
 
 # .env file setup
 load_dotenv()
 exodb_url = os.getenv("DATABASE_URL")
 
-# Step 1: create spectra tables
+#Step 1: Call NASA API/TAP for exoplanet data and create spectra_dataframe
+nasa_get()
+response = nasa_get()
+response.raise_for_status() # Error Handling 
+status_code = f"\nHTTP status_code: {response.status_code}" # Status code for validation.
+print(status_code)
+spectra_dataframe = pd.read_csv(StringIO(response.text)) # string IO Treats text string as a file and creates spectra_dataframe data frame.
+
+# Step 2: Create spectra tables in PostgreSQL
 result = create_spec_tables(exodb_url)
 print(result)
+
+# Step 3: Load in the dim table data into PostgreSQL
+loaded = load_dim_tables(spectra_dataframe, exodb_url)
+print(loaded)

@@ -3,24 +3,9 @@
 from sqlalchemy import create_engine, text
 import pandas as pd
 import numpy as np 
-import requests
 
 # function that creates spectra_file tables within postgreSQL database
 def create_spec_tables(PostgreSQL_DATABASE_URL):
-
-    # HTTP GET request to NASA API/TAP
-    url = "https://exoplanetarchive.ipac.caltech.edu/TAP/sync"
-
-    params = {
-        "query": """
-            SELECT *
-            FROM spectra
-        """,
-        "format": "csv"
-    }
-
-    response = requests.get(url, params=params) # Response from NASA's API endpoint
-    response.raise_for_status() # Error Handling 
 
     # PostgreSQL connection
     engine = create_engine(PostgreSQL_DATABASE_URL)
@@ -38,28 +23,29 @@ def create_spec_tables(PostgreSQL_DATABASE_URL):
         
         CREATE TABLE IF NOT EXISTS planets (
         id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-        pl_name VARCHAR
+        pl_name VARCHAR UNIQUE  
         ); 
 
         CREATE TABLE IF NOT EXISTS instruments (
         id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-        instrument VARCHAR
+        instrument VARCHAR UNIQUE 
         );
 
         CREATE TABLE IF NOT EXISTS publications (
         id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
         author VARCHAR,
-        bibcode VARCHAR
+        bibcode VARCHAR,
+        UNIQUE (author, bibcode)
         );
 
         CREATE TABLE IF NOT EXISTS facilities (
         id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-        facility VARCHAR
+        facility VARCHAR UNIQUE 
         );
 
         CREATE TABLE IF NOT EXISTS spec_types (
         id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-        spec_type VARCHAR
+        spec_type VARCHAR UNIQUE 
         );
 
         CREATE TABLE IF NOT EXISTS spectra_files (
@@ -84,6 +70,5 @@ def create_spec_tables(PostgreSQL_DATABASE_URL):
         FOREIGN KEY (facilities_id) REFERENCES facilities(id)
         );
         '''))
-        return f'''HTTP status_code: {response.status_code}\n\n--tables created in database--''' 
-        # Status code for validation.
-        # validation message saying that the tables have been created.
+        return f'''\n\n---Tables created in PostgreSQL---\n''' 
+        # Validation message saying that the tables have been created.
