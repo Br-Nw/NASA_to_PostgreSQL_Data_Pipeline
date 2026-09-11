@@ -17,7 +17,7 @@ def run_pipeline(exodb_url):
     response.raise_for_status() # Error Handling 
     status_code = f"\nHTTP status_code: {response.status_code}" # Status code for validation.
     print(status_code)
-    spectra_dataframe = pd.read_csv(StringIO(response.text)) # string IO Treats text string as a file and creates spectra_dataframe data frame.
+    spectra_dataframe = pd.read_csv(StringIO(response.text)) # string IO Treats text string as a file and creates spectra_dataframe.
 
     # Step 2: Create spectra tables in PostgreSQL
     result = create_spec_tables(exodb_url)
