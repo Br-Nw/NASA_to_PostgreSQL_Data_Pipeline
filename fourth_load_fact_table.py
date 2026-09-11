@@ -17,7 +17,7 @@ def load_spectra_fact_table(spectra_dataframe, exodb_url):
         instruments_df = pd.read_sql("SELECT * FROM instruments;", conn)
 
         exo_df = spectra_dataframe
-        exo_df["id"] = exo_df.index + 1 # The id coulumn of this intermediary dataframe is set to start at 1 not 0 (1 more than the index).
+        exo_df["id"] = exo_df.index + 1 # The id column of this intermediary dataframe is set to start at 1 not 0 (1 more than the index).
 
         for i in range(len(exo_df)): # Iterates over each record in exo_df.
 
