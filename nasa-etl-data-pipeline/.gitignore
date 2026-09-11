@@ -24,3 +24,6 @@ target/
 .idea/
 .vscode/
 __pycache__/
+
+# 🛠️ Used to test sections of code
+code_testing_file.ipynb

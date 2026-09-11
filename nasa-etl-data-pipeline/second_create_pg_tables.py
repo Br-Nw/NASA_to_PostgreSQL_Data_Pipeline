@@ -62,6 +62,7 @@ def create_spec_tables(PostgreSQL_DATABASE_URL):
         maxtranmid FLOAT,
         note VARCHAR,
         spec_path VARCHAR UNIQUE,
+        inserted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
         FOREIGN KEY (planets_id) REFERENCES planets(id),
         FOREIGN KEY (spec_types_id) REFERENCES spec_types(id),
