@@ -33,9 +33,9 @@ def create_spec_tables(PostgreSQL_DATABASE_URL):
 
         CREATE TABLE IF NOT EXISTS publications (
         id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-        author VARCHAR,
+        authors VARCHAR,
         bibcode VARCHAR,
-        UNIQUE (author, bibcode)
+        UNIQUE (authors, bibcode)
         );
 
         CREATE TABLE IF NOT EXISTS facilities (
@@ -56,8 +56,8 @@ def create_spec_tables(PostgreSQL_DATABASE_URL):
         num_datapoints INTEGER,
         instruments_id INTEGER,
         facilities_id INTEGER,
-        minwavelength FLOAT,
-        maxwavelength FLOAT,
+        minwavelng FLOAT,
+        maxwavelng FLOAT,
         mintranmid FLOAT,
         maxtranmid FLOAT,
         note VARCHAR,

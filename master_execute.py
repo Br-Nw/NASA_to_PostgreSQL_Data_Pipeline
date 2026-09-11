@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from first_api_call_df_creation import nasa_get
 from second_create_pg_tables import create_spec_tables
 from third_load_dim_tables import load_dim_tables
+from fourth_load_fact_table import load_spectra_fact_table
 import requests
 import pandas as pd
 from io import StringIO
@@ -29,3 +30,7 @@ print(result)
 # Step 3: Load in the dim table data into PostgreSQL
 loaded = load_dim_tables(spectra_dataframe, exodb_url)
 print(loaded)
+
+#Step 4: Load in the spectra fact table data into PostgreSQL
+spectra_loaded = load_spectra_fact_table(spectra_dataframe, exodb_url)
+print(spectra_loaded)

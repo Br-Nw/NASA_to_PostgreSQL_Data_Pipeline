@@ -46,7 +46,7 @@ def load_dim_tables(spectra_dataframe, exodb_url):
                 for i, publication in enumerate(publications):
                     author = publications[i][0] 
                     bibcode = publications[i][1]
-                    conn.execute(text(f'''INSERT INTO publications(author, bibcode) values(:author, :bibcode);'''), {"author":author, "bibcode":bibcode})
+                    conn.execute(text(f'''INSERT INTO publications(authors, bibcode) values(:authors, :bibcode);'''), {"authors":author, "bibcode":bibcode})
         return "---Publications inserted into PostgreSQL---"
 
     pl = insert_into_planets(spectra_dataframe, exodb_url)

@@ -1,9 +1,3 @@
-# 🗄️ Local databases
-*.duckdb
-*.duckdb.wal
-*.sqlite
-*.db
-
 # 📊 Raw data
 /data/raw/
 /data/tmp/
