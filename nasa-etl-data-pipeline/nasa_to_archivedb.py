@@ -1,3 +1,4 @@
+# ▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️(Run pipline script to archive)▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️
 # THIS IS A NASA API/TAP TO POSTGRESQL PIPELINE TO THE ARCHIVE DATABASE 
 
 import os
@@ -18,3 +19,4 @@ print(f"\n\n-----ARCHIVE DATABASE UPDATED AT {timestamp}-----")
 # This file runs the pipeline from NASA's API/TAP to the PostgreSQL archive database.
 # Ideally, this should be run LESS frequently than the live database pipeline,
 # which is intended for more recent data.
+# ▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️▶️

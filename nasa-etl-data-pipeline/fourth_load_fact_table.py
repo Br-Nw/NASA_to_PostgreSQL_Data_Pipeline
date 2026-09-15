@@ -31,8 +31,8 @@ def load_spectra_fact_table(spectra_dataframe, exodb_url):
             record_facility = record["facility"]
             record_instrument = record["instrument"]
 
-            # This section of the code matches each record to the corresponding IDs in the related tables,
-            # then extract and convert the required spectral data fields for insertion
+            # This section of the code matches each records column values to the corresponding IDs in the related dimension tables,
+            # then extracts and converts the required spectral data fields for insertion
             # into the spectra_files table
             # if it is a Null or None value it is set to None.
 

@@ -6,7 +6,7 @@ import pandas as pd
 
 def load_dim_tables(spectra_dataframe, exodb_url):
 
-    # The section of the code consists of functions which when called, insert values into the postgreSQL tables.
+    # The section of the code consists of functions which when called, insert values into the PostgreSQL tables.
     def insert_into_planets(spectra_dataframe, exodb_url):
         engine = create_engine(exodb_url) # PostgreSQL connection
         with engine.begin() as conn:

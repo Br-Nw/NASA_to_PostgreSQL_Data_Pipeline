@@ -4,7 +4,7 @@ from sqlalchemy import create_engine, text
 import pandas as pd
 import numpy as np 
 
-# function that creates spectra_file tables within postgreSQL database
+# function that creates spectra_file tables within PostgreSQL database
 def create_spec_tables(PostgreSQL_DATABASE_URL):
 
     # PostgreSQL connection

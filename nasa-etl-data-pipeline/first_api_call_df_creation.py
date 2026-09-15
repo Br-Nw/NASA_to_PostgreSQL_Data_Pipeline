@@ -14,7 +14,7 @@ def nasa_get():
             FROM spectra
         """,
         "format": "csv"
-    }
+    } 
 
     # HTTP GET request to NASA API/TAP
     r = requests.get(url, params=params) # Response from NASA's API endpoint
