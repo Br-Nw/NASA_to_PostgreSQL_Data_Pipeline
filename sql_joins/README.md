@@ -2,4 +2,4 @@
 
 This SQL script performs joins to reconstruct the Atmospheric Spectra flat-table in PostgreSQL.
 
-![join script](images\exodb.gif)
+![join script](images/exodb.gif)
