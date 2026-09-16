@@ -1,6 +1,6 @@
 # 🪐 Exoplanet Atmospheric Spectroscopy Data Pipeline 
 
-This project is an end-to-end data engineering pipeline that extracts exoplanet atmospheric spectroscopy data from the **NASA Exoplanet Archive TAP service**, transforms and normalises the data using Python, Pandas and SQLAlchemy, then loads it into structured **PostgreSQL databases**.
+This project is an end-to-end data engineering pipeline that extracts exoplanet atmospheric spectroscopy data from the **NASA Exoplanet Archive TAP service**, transforms and normalises the data using Python, Pandas and SQLAlchemy, then loads it into structured **PostgreSQL databases**.  A Power BI dashboard is then created using the database data to provide an easy analytical experience, displaying key metrics from the dataset.
 
 The pipeline separates the data into lookup/dimension tables and a central fact table, maintaining important relationships through foreign keys. Two databases are supported: a **live database** for more recent data and an **archive database** for older data. This **archive database** can also function as a redundancy measure.
 
@@ -16,6 +16,8 @@ The pipeline separates the data into lookup/dimension tables and a central fact 
 * **Database environments:** Supports separate live and archive PostgreSQL databases
 * **Validation:** Includes HTTP status checks, record counts and pipeline progress messages
 * **Automation:** Uses a master orchestration script to execute the pipeline stages in sequence
+* **Analytics:** Creates a meaningful Power BI dashboard for clear analysis.
+
 
 ---
 
@@ -25,7 +27,8 @@ The pipeline separates the data into lookup/dimension tables and a central fact 
 
 For third parties interested in storing this information, a dataset containing repeating data in one large flat table can create unnecessary duplication and make maintaining relationships between records more difficult.
 
-**Solution:** I developed an ETL pipeline to retrieve spectroscopy records from the NASA Exoplanet Archive as a CSV file, transform the raw data, separate repeated attributes into lookup/dimension tables, and load the resulting data into a normalised PostgreSQL database.
+**Solution:** I developed an ETL pipeline to retrieve spectroscopy records from the NASA Exoplanet Archive as a CSV file, transform the raw data, separate repeated attributes into lookup/dimension tables, and load the resulting data into a normalised PostgreSQL database. Then, use the database's data to create an interactive Power BI dashboard, providing an easy analytical experience and displaying key metrics from the dataset.
+
 
 The pipeline creates a central `spectra_files` fact table and connects it to related lookup tables using foreign keys.
 
