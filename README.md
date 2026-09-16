@@ -272,7 +272,7 @@ The live database pipeline is intended to be run **more frequently** than the ar
 
 The archive database pipeline runs the same ETL process against the PostgreSQL archive database.
 
-**Code:** [`nasa_to_archivedb.py`](nasa-etl-data-pipeline\nasa_to_archivedb.py)
+**Code:** [`nasa_to_archivedb.py`](nasa-etl-data-pipeline/nasa_to_archivedb.py)
 
 The database connection is retrieved from:
 
@@ -322,8 +322,10 @@ The PostgreSQL database can be connected to analytical and visualisation tools s
 The normalised database structure provides a structured source for querying exoplanet spectroscopy data and building analytical dashboards.
 
 Using semantic modelling, DAX, and visuals, an interactive dashboard was created to enable end users to easily explore and analyse the dataset.
- 
+
  ![Exoplanet Atmospheric Spectroscopy](images/exobi_gif.gif)
+
+  **File:** [`Power BI Dashboard File`](spectroscopy-powerbi)
 
 # ⚙️🛠️ Data Engineering Skills Demonstrated
 
