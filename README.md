@@ -1,4 +1,4 @@
-# 🪐 Exoplanet Atmospheric Spectroscopy Data Pipeline 🪐
+# 🪐 Exoplanet Atmospheric Spectroscopy Data Pipeline 
 
 This project is an end-to-end data engineering pipeline that extracts exoplanet atmospheric spectroscopy data from the **NASA Exoplanet Archive TAP service**, transforms and normalises the data using Python, Pandas and SQLAlchemy, then loads it into structured **PostgreSQL databases**.
 
