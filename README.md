@@ -1,5 +1,11 @@
 # 🪐 Exoplanet Atmospheric Spectroscopy Data Pipeline 
 
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?logo=pandas)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-ORM-D71F00?logo=sqlalchemy)
+![Power BI](https://img.shields.io/badge/Power%20BI-Analytics-F2C811?logo=powerbi)
+
 This project is an end-to-end data engineering pipeline that extracts exoplanet atmospheric spectroscopy data from the **NASA Exoplanet Archive TAP service**, transforms and normalises the data using Python, Pandas and SQLAlchemy, then loads it into structured **PostgreSQL databases**.  A Power BI dashboard is then created using the database data to provide an easy analytical experience, displaying key metrics from the dataset.
 
 The pipeline separates the data into lookup/dimension tables and a central fact table, maintaining important relationships through foreign keys. Two databases are supported: a **live database** for more recent data and an **archive database** for older data. This **archive database** can also function as a redundancy measure.
