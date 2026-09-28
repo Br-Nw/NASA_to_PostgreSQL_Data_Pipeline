@@ -5,7 +5,7 @@
 ![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?logo=pandas)
 ![SQLAlchemy Core](https://img.shields.io/badge/SQLAlchemy-Core-D71F00?logo=sqlalchemy)
 ![Power BI](https://img.shields.io/badge/Power%20BI-Analytics-F2C811?logo=powerbi)
-![SQL](https://img.shields.io/badge/SQL-Data%20Engineering-4479A1)
+![SQL](https://img.shields.io/badge/SQL-Data%20Transformation-4479A1)
 
 This project is an end-to-end data engineering pipeline that extracts exoplanet atmospheric spectroscopy data from the **NASA Exoplanet Archive TAP service**, transforms and normalises the data using Python, Pandas and SQLAlchemy, then loads it into structured **PostgreSQL databases**.  A Power BI dashboard is then created using the database data to provide an easy analytical experience, displaying key metrics from the dataset.
 
